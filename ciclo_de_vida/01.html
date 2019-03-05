@@ -11,25 +11,11 @@
 <body>
 
   <div id="app">
-    <h1>{{titulo}}</h1>
-
-		<input type="text" v-model="nuevoVegetal" @keyup.enter="metodoAgregarVegetal">
-		<button @click="metodoAgregarVegetal">Agregar</button>
-
-    <ul>
-      <li v-for="fruta of frutas">{{fruta}}</li>
-    </ul>
-    <ul>
-      <li v-for="vegetal of vegetales">
-				<input type="number" v-model.number="vegetal.cantidad">
-				{{vegetal.nombre}}
-				<span v-if="vegetal.cantidad === 0">- Sin Stock</span>
-				<button @click="vegetal.cantidad++">+</button>
-				<button @click="vegetal.cantidad--">-</button>
-			</li>
-    </ul>
-		<h4>Total: {{sumarVegetales}}</h4>
-
+		<div class="container">
+				<h3>{{saludo}}</h3>
+				<button @click="saludo = 'Saludo cambiado'">Cambiar</button>
+				<button @click="detruir()">Destruir</button>
+		</div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

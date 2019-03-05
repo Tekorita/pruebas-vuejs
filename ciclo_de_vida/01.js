@@ -1,32 +1,43 @@
 const app = new Vue({
   el: '#app',
   data: {
-    titulo:'Hola mundo con vuej',
-    frutas: ['Manzana','pera','platano'],
-    vegetales: [
-      {nombre:'papa', cantidad:10},
-      {nombre:'camote', cantidad:0},
-      {nombre:'zanahoria', cantidad:6},
-      {nombre:'cebolla', cantidad:17},
-    ],
-    nuevoVegetal: "",
-    total: 0
+    saludo: 'soy el ciclo de vida de Vue'
+  },
+  beforeCreate(){
+    console.log('beforeCreate');
+  },
+  create(){
+    // Al crear los metodos, observadores y eventos, pero aun no accede al dom
+    // Aun no se puede acceder a 'el'
+    console.log('created');
+  },
+  beforeMount(){
+    // Se ejecuta antes de insertar el Dom
+    console.log('beforeMount');
+  },
+  mounted(){
+    // Se ejecuta al insertar el Dom
+    console.log('mounted');
+  },
+  beforeUpdate(){
+    // Se ejecuta al detectar un cambio
+    console.log('beforeUpdate');
+  },
+  update(){
+    // Se ejecuta al realizar un cambio
+    console.log('update');
+  },
+  beforeDestroy(){
+    // Se ejecuta antes de destruir la instancia
+    console.log('beforeDestroy');
+  },
+  destroyed(){
+    // Se destruye toda la instancia
+    console.log('destroyed');
   },
   methods:{
-    metodoAgregarVegetal () {
-      this.vegetales.push({
-        nombre: this.nuevoVegetal, cantidad: 0
-      });
-      this.nuevoVegetal = "";
-    }
-  },
-  computed: {
-    sumarVegetales() {
-      this.total = 0;
-      for(vegetal of this.vegetales){
-        this.total = this.total + vegetal.cantidad;
-      }
-      return this.total;
+    destruir(){
+      this.$destroy();
     }
   }
 })
