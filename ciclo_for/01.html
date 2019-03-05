@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	  <title>Vue js</title>
+</head>
+<body>
+
+  <div id="app">
+    <h1>{{titulo}}</h1>
+
+		<input type="text" v-model="nuevoVegetal" @keyup.enter="metodoAgregarVegetal">
+		<button @click="metodoAgregarVegetal">Agregar</button>
+
+    <ul>
+      <li v-for="fruta of frutas">{{fruta}}</li>
+    </ul>
+    <ul>
+      <li v-for="vegetal of vegetales">
+				<input type="number" v-model.number="vegetal.cantidad">
+				{{vegetal.nombre}}
+				<span v-if="vegetal.cantidad === 0">- Sin Stock</span>
+				<button @click="vegetal.cantidad++">+</button>
+				<button @click="vegetal.cantidad--">-</button>
+			</li>
+    </ul>
+		<h4>Total: {{sumarVegetales}}</h4>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="01.js"></script>
+</body>
+</html>
