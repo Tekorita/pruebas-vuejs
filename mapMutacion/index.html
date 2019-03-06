@@ -30,7 +30,7 @@
 		</div>
 		`,
 		computed:{
-			...Vuex.mapState(['numero']) //state con vue
+			...Vuex.mapState(['numero'])
 		}
 	});
 
@@ -38,10 +38,17 @@
 		template:
 		`
 		<div>
-			<h1>numero {{$store.state.numero}}</h1>
-			<button @click="$store.commit('aumentar')">+</button>
+			<h1>numero {{numero}}</h1>
+			<button @click="aumentar">+</button>
+      <button @click="disminuir(2)">-</button>
 		</div>
-		`
+		`,
+    computed:{
+			...Vuex.mapState(['numero'])
+		},
+    methods:{
+      ...Vuex.mapMutations(['aumentar','disminuir']) //los 3 puntos suspensivos se colocan cuando no se puede colocar un objeto dentro de otro en este caso methods:{{}} no puede hacer eso entonces se colocan los puntos y luego se pasa como un arreglo y en button @click ya no se llama store.commit.('aumentar') si no que se llama aumentar directamente gracias al mapmutation
+    }
 	});
 
 	const store = new Vuex.Store({
@@ -51,6 +58,9 @@
 		mutations:{
 			aumentar(state){
 				state.numero ++
+			},
+      disminuir(state,n){
+				state.numero -= n
 			}
 		}
 	});
